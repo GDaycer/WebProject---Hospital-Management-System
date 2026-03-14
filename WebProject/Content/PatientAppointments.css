@@ -1,0 +1,175 @@
+﻿.schedule_timeline {
+    position: relative;
+    padding-left: 20px;
+    border-left: 2px solid #ffe3e3;
+    margin-left: 10px;
+}
+
+.date_header {
+    background-color: #ffe3e3;
+    color: #CF352E;
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    display: inline-block;
+    font-size: 0.9rem;
+}
+.no_history_area {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+}
+
+.no_history{
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.appointment_card_doctor_name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.appointment_card {
+    background: white;
+    border: 1px solid #eee;
+    border-left: 5px solid #CF352E;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    position: relative;
+}
+
+
+.appointment_cancelled {
+    background: #ffebee;
+    color: #c62828;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.appointment_completed {
+    background: rgb(10, 182, 24);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+.doctor_name {
+    font-weight: 600;
+    color: #555;
+}
+
+
+.emoji {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.reason_background {
+    background-color: #f9f9f9;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.description {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.done {
+    display: block;
+    font-size: 0.9rem;
+    color: #777;
+}
+.done_text {
+    font-size: 1.2rem;
+    color: #28a745;
+}
+
+
+.cancelled {
+    display: block;
+    font-size: 0.9rem;
+    color: #777;
+}
+.cancelled_text {
+    font-size: 1.2rem;
+    color: #dc3545;
+}
+
+.stat_horizontal_separator {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.stat_vertical_separator{
+    text-align: center;
+    flex: 1;
+    border-left: 1px solid #eee;
+}
+
+.start_time{
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #333;
+}
+.appointment_upcoming {
+    background: #e6fffa;
+    color: #2c7a7b;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.separator {
+    color: #ddd;
+    margin: 0 8px;
+}
+
+.patient_stats_area {
+    text-align: center;
+    background-color: #fff5f5;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ffe3e3;
+}
+
+.btn-cancel {
+    font-size: 12px;
+    background: white;
+    border: 1px solid #dc3545;
+    color: #dc3545;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 600;
+}
+.no_visits {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+.no_visit_sign{
+    font-size: 1.2rem;
+    color: #777;
+    display: block;
+    margin-top: 5px;
+}
+.btn-cancel:hover{
+    background: #dc3545;
+    color: white;
+}
+
+

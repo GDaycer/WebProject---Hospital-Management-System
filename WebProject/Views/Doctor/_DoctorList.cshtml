@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WebProject.Models.Doctor>
+
+@{
+    Layout = null;
+}
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/Content/findDoctor.css")" />
+}
+
+<div class="results_header">
+    <h3>Search Results (@Model.Count())</h3>
+    <hr />
+</div>
+
+@if (Model.Any())
+{
+    foreach (var doctor in Model)
+    {
+        <div class="doctor_card">
+            <div class="doctor_info">
+                <h3>Dr. @doctor.User.FirstName @doctor.User.LastName</h3>
+                <p><strong>Specialty:</strong> @doctor.Specialty</p>
+                <p><strong>Shift:</strong> @doctor.ShiftStart - @doctor.ShiftEnd</p>
+            </div>
+            <div>
+                <a href="@Url.Action("Book", "Patient", new { DoctorId = doctor.DoctorId })" class="btn_book">Book Appointment</a>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p style="text-align: center;color: #777;font-size: 1.2rem;margin-top: 2rem;">
+        No doctors found matching your criteria.
+    </p>
+}

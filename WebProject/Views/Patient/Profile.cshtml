@@ -1,0 +1,139 @@
+﻿@model WebProject.Models.Patient
+
+@{
+    ViewBag.Title = "My Profile";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/Content/PatientHomePage.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/PatientProfile.css")" />
+}
+
+<main class="patient_main">
+    <div class="dashboard_container">
+
+        <nav class="sidebar_nav_left">
+            <h3>Patient Menu</h3>
+            <ul>
+                <li><a href="@Url.Action("Home","Patient")">Dashboard</a></li>
+                <li><a href="@Url.Action("Records", "Patient")">My Medical Records</a></li>
+                <li><a href="@Url.Action("Appointments", "Patient")">My Appointments</a></li>
+                <li><a href="@Url.Action("Profile", "Patient")" style="background-color: #CF352E; color: white;">My Profile</a></li>
+                <li><a href="@Url.Action("Book", "Patient")">Book New Appointment</a></li>
+            </ul>
+        </nav>
+
+        <div class="main_content">
+
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success" style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 6px; margin-bottom: 20px;">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+            <div class="profile_header_section">     
+                <div>
+                    <h2>@Model.User.FirstName @Model.User.LastName</h2>
+
+                </div>
+            </div>
+
+            @using (Html.BeginForm("UpdateProfile", "Patient", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.PatientId)
+
+                <div class="profile_section">
+                    <h4 class="section-heading">Identity Information 🔒</h4>
+                    <span class="text_desc">Name and Email are managed by hospital administration.</span>
+
+                    <div class="row" style="display: flex; gap: 20px;">
+
+                        <div style="flex: 1;">
+                            <label class="profile_label">Full Name</label>
+                            <input type="text" class="custom-form-control form-locked" value="@Model.User.FirstName @Model.User.LastName" readonly />
+                        </div>
+
+                        <div style="flex: 1;">
+                            <label class="profile_label">Email</label>
+                            <input type="text" class="custom-form-control form-locked" value="@Model.User.Email" readonly />
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="update_details">
+                    <h4 class="section-heading">Update Details</h4>
+
+                    <div class="row" style="display: flex; gap: 20px;">
+                        <div style="flex: 1;">
+                            <label class="profile_label">Height (cm)</label>
+                            @Html.TextBoxFor(m => m.Height, new { @class = "custom-form-control", type = "number" })
+                        </div>
+                        <div style="flex: 1;">
+                            <label class="profile_label">Weight (kg)</label>
+                            @Html.TextBoxFor(m => m.Weight, new { @class = "custom-form-control", type = "number" })
+                        </div>
+                        <div style="flex: 1;">
+                            <label class="profile_label">Blood Type 🔒</label>
+                            @Html.TextBoxFor(m => m.BloodType, new { @class = "custom-form-control form-locked", @readonly = "readonly" })
+                        </div>
+                    </div>
+
+                    <hr class="update_details_separator" />
+
+                    <div class="row" style="display: flex; gap: 20px;">
+                        <div style="flex: 1;">
+                            <label class="profile_label">Phone Number</label>
+                            @Html.TextBoxFor(m => m.PhoneNumber, new {@class = "custom-form-control" })
+                        </div>
+                        <div style="flex: 1;">
+                            <label class="profile_label">Emergency Contact</label>
+                            @Html.TextBoxFor(m => m.EmergencyContactNumber, new {@class = "custom-form-control", placeholder = "Emergency Phone" })
+                        </div>
+                        <div style="flex:1;">
+                            <label class="profile_label">Emergency Contact Name</label>
+                            @Html.TextBoxFor(m=>m.EmergencyContactName, new {@class = "custom-form-control", placeholder = "Emergency Contact Name"})
+                        </div>
+                    </div>
+
+                    <label class="profile_label">Address</label>
+                    @Html.TextAreaFor(m => m.Address, new { @class = "custom-form-control", rows = "2" })
+
+                    <div style="text-align: right;">
+                        <button type="submit" class="btn-save">Save Changes</button>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="patient_info_card">
+            <div class="patient_header">
+                <h4>Medical Status</h4>
+            </div>
+            <div class="patient_stats">
+                <div class="stat_item">
+                    <span>Blood</span><strong>@Model.BloodType</strong>
+                </div>
+                <div class="stat_item">
+                    <span>BMI</span>
+                    <strong>
+                        @if (Model.Height > 0 && Model.Weight > 0)
+                        {
+                            var h = (double)Model.Height / 100;
+                            var bmi = (double)Model.Weight / (h * h);
+                            @Math.Round(bmi, 1)
+                        }
+                        else
+                        {
+                            <span>--</span>
+                        }
+                    </strong>
+
+                </div>
+
+            </div>
+            
+        </div>
+</main>

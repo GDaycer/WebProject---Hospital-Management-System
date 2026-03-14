@@ -1,0 +1,89 @@
+﻿
+@model IEnumerable<WebProject.Models.Appointment>
+
+@{
+    ViewBag.Title = "Doctor Dashboard";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/Content/DoctorHomePage.css")" />
+}
+
+<main class="doctor_main">
+
+    <div class="dashboard_container">
+
+        <nav class="sidebar_nav_left">
+            <h3>Doctor Menu</h3>
+
+            <ul>
+                <li><a href="@Url.Action("HomeScreen", "Doctor")" style="background-color: #007bff; color: white;">Dashboard</a></li>
+                <li><a href="@Url.Action("Schedule", "Doctor")">Full Schedule</a></li>
+                <li><a href="@Url.Action("MyPatients", "Doctor")">My Patient List</a></li>
+                <li><a href="@Url.Action("CreateRecord", "Doctor")">Create Record</a></li>
+                <li><a href="@Url.Action("DoctorProfile", "Doctor")">Profile</a></li>
+            </ul>
+
+        </nav>
+
+        <div class="main_content">
+            <h3>Today's Appointments</h3>
+            <p class="text_muted">@DateTime.Now.ToString("dddd, MMMM dd")</p>
+            <hr />
+
+            @if (Model == null || Model.Count() == 0)
+            {
+                <div style="text-align:center; padding: 40px; color:#999;">
+                    <h4>No Appointments Today</h4>
+                    <p>You have a clear schedule.</p>
+                </div>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <div class="appointment_card">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h4 style="margin:0; color:#333;">
+                                @if (item.Patient != null && item.Patient.User != null)
+                                {
+                                    @item.Patient.User.FirstName @item.Patient.User.LastName
+                                }
+                                else
+                                { <span>Unknown</span>}
+                            </h4>
+                            <span style="font-weight:bold; color:#CF352E;">
+                                @item.startTime.ToString("HH:mm")
+                            </span>
+                        </div>
+
+                        <p style="margin-top:10px; color:#666;">
+                            <strong>Reason:</strong> @item.ReasonForVisit
+                        </p>
+
+                        <div style="text-align:right; margin-top:10px;">
+                            <a href="@Url.Action("PatientHistory", "Doctor", new { id = item.patientId })"
+                               style="font-size:12px; text-decoration:underline;" class="patient_history_link">
+                                View History
+                            </a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="doctor_info_card">
+            <div class="doctor_header">
+                
+
+                <h4>@ViewBag.DoctorName</h4>
+                <span>@ViewBag.Specialty</span>
+            </div>
+            
+            <div style="font-size: 13px; color: #777;">
+                
+            </div>
+        </div>
+
+    </div>
+</main>

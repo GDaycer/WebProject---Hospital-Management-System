@@ -1,0 +1,96 @@
+﻿@model WebProject.Models.DoctorSignUp
+
+@{
+    ViewBag.Title = "Onboard Doctor";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/Content/AdminPanel.css" />
+    <link rel="stylesheet" href="~/Content/AdminCreatePanel.css" />
+}
+
+<style>
+
+   
+</style>
+
+<div class="admin_container">
+
+    <div class="admin_header">
+        <h2>Onboard New Doctor</h2>
+        <a href="@Url.Action("List")" class="btn_cancel">Cancel</a>
+    </div>
+
+    <div class="form_content">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form_grid">
+
+                <div class="form_group">
+                    @Html.LabelFor(m => m.FirstName, "First Name")
+                    @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { @class = "form_control" } })
+                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "validation_error" })
+                </div>
+
+                <div class="form_group">
+                    @Html.LabelFor(m => m.LastName, "Last Name")
+                    @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form_control" } })
+                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "validation_error" })
+                </div>
+
+                <div class="form_group">
+                    @Html.LabelFor(m => m.Email, "Email Address")
+                    @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form_control" } })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "validation_error" })
+                </div>
+
+                
+                <div class="form_group">
+                    @Html.LabelFor(m => m.Password, "Initial Password")
+                    @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @class = "form_control" } })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "validation_error" })
+                </div>
+
+                <div class="form_group">
+                    @Html.LabelFor(m => m.Specialty)
+                    @Html.DropDownListFor(model => model.Specialty, new SelectList(new[] {
+                        "Cardiology", "Dermatology", "Neurology", "Orthopedics", "Gastroenterology", "Pediatrics"
+                    }), "Select Specialty", new { @class = "form_control" })
+                    @Html.ValidationMessageFor(m => m.Specialty, "", new { @class = "validation_error" })
+                </div>
+
+
+                <div class="form_group">
+                    @Html.LabelFor(m => m.LicenseNumber, "Medical License #")
+                    @Html.EditorFor(m => m.LicenseNumber, new { htmlAttributes = new { @class = "form_control" } })
+                    @Html.ValidationMessageFor(m => m.LicenseNumber, "", new { @class = "validation_error" })
+                </div>
+
+
+                <div class="form_group">
+                    @Html.LabelFor(m => m.ShiftStart, "Shift Start Time")
+                    @Html.EditorFor(m => m.ShiftStart, new { htmlAttributes = new { @class = "form_control", type = "time" } })
+                    @Html.ValidationMessageFor(m => m.ShiftStart, "", new { @class = "validation_error" })
+                </div>
+
+                <div class="form_group">
+                    @Html.LabelFor(m => m.ShiftEnd, "Shift End Time")
+                    @Html.EditorFor(m => m.ShiftEnd, new { htmlAttributes = new { @class = "form_control", type = "time" } })
+                    @Html.ValidationMessageFor(m => m.ShiftEnd, "", new { @class = "validation_error" })
+                </div>
+
+                <div class="form_group full_width">
+                    @Html.LabelFor(m => m.Bio, "Doctor's Bio")
+                    @Html.TextAreaFor(m => m.Bio, new { @class = "form_control", rows = "4", placeholder = "Enter a brief description" })
+                    @Html.ValidationMessageFor(m => m.Bio, "", new { @class = "validation_error" })
+                </div>
+                
+            </div>
+
+            <div class="form_actions">
+                <button type="submit" class="btn_submit">Create Account</button>
+            </div>
+        }
+    </div>
+</div>

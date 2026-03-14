@@ -1,0 +1,115 @@
+﻿.profile_section {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #eef2f7;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+.update_details {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #eef2f7;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    border-left: 4px solid #CF352E;
+}
+
+.profile_header_section {
+    background: linear-gradient(135deg, #CF352E 0%, #a01e1e 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.profile_header_section h2{
+    margin: 0;
+    font-size: 22px;
+}
+
+.profile_label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+}
+
+.custom-form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: #333;
+    transition: 0.2s;
+}
+
+.custom-form-control:focus {
+    border-color: #CF352E;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(207, 53, 46, 0.1);
+}
+.update_details_separator {
+    border-top: 1px dashed #eee;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.form-locked {
+    background-color: #f9f9f9;
+    color: #666;
+    border-color: #eee;
+    cursor: not-allowed;
+}
+
+.btn-save {
+    background-color: #CF352E;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-save:hover {
+    background-color: #a01e1e;
+    transform: translateY(-1px);
+}
+
+.section_header {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 700;
+}
+.update_header {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #CF352E;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.text_desc {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.footer_note {
+    text-align: center;
+    margin-top: 15px;
+    color: #555;
+    font-size: 0.9rem;
+}

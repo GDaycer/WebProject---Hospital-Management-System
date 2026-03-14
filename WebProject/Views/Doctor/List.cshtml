@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WebProject.Models.Doctor>
+
+@{
+    ViewBag.Title = "Manage Doctors";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/Content/AdminPanel.css" />
+}
+
+
+<div class="admin_container">
+
+    <div class="admin_header">
+        <h2>Doctor List</h2>
+
+        <a href="@Url.Action("Create", "Doctor")" class="btn_add_new">
+            <span>+</span> Add New Doctor
+        </a>
+    </div>
+
+    <div class="table_wrapper">
+        <table class="admin_table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Specialty</th>
+                    <th>License #</th>
+                    <th>Shift</th>
+                    <th style="text-align: right;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <strong>@item.User.FirstName @item.User.LastName</strong>
+                        </td>
+
+                        <td>
+                            @item.User.Email
+                        </td>
+
+                        <td>
+                            <span style="background: #eee; padding: 4px 8px; border-radius: 4px; font-size: 0.85rem;">
+                                @item.Specialty
+                            </span>
+                        </td>
+
+                        <td>
+                            @item.LicenseNumber
+                        </td>
+
+                        <td>
+                            @item.ShiftStart - @item.ShiftEnd
+                        </td>
+
+                        <td>
+                            <div class="action_group" style="justify-content: flex-end;">
+
+                                <a href="@Url.Action("Edit", "Doctor", new { id = item.DoctorId })" class="btn_action btn_edit">Edit</a>
+                                <a href="@Url.Action("Details", "Doctor", new { id = item.DoctorId })" class="btn_action btn_details">View</a>
+                                <a href="@Url.Action("Delete", "Doctor", new { id = item.DoctorId })" class="btn_action btn_delete">Delete</a>
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

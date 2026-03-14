@@ -1,0 +1,128 @@
+﻿@model IEnumerable<WebProject.Models.Appointment>
+@{
+    ViewBag.Title = "Schedule";
+    DateTime? lastDate = null;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/Content/DoctorHomePage.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/DoctorSchedule.css")" />
+}
+
+<main class="doctor_main">
+    <div class="dashboard_container">
+
+        <nav class="sidebar_nav_left">
+            <h3>Doctor Menu</h3>
+            <ul>
+                <li><a href="@Url.Action("HomeScreen", "Doctor")">Dashboard</a></li>
+                <li><a href="@Url.Action("Schedule", "Doctor")"  style="background-color: #007bff; color: white;">Full Schedule</a></li>
+                <li><a href="@Url.Action("MyPatients", "Doctor")">My Patient List</a></li>
+                <li><a href="@Url.Action("CreateRecord", "Doctor")">Create Record</a></li>
+                <li><a href="@Url.Action("DoctorProfile", "Doctor")">Profile</a></li>
+            </ul>
+        </nav>
+
+        <div class="main_content">
+            <h3>Appointment Calendar</h3>
+
+            <hr />
+
+            @if (Model.Count() == 0)
+            {
+                <div class="no_appointment">
+                    <h4>No Appointments Found</h4>
+                    <p>Your calendar is completely empty.</p>
+                </div>
+            }
+            else
+            {
+                <div class="schedule_timeline">
+                    @foreach (var item in Model)
+                    {
+                        
+                        if (lastDate == null || item.startTime.Date != lastDate.Value.Date)
+                        {
+                            <div class="calender_date">
+                                @item.startTime.ToString("dddd, MMMM dd, yyyy")
+                            </div>
+                            lastDate = item.startTime;
+                        }
+
+
+                        <div class="appointment_card" style="border-left-color: #007bff"; background-color: white;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+
+                                <div>
+                                    <span style="font-weight:bold; font-size: 1.1em; color: #333;">
+                                        @item.startTime.ToString("HH:mm")
+                                    </span>
+                                    <span style="color:#999; margin: 0 5px;">|</span>
+                                    <span style="font-weight: 600;">
+                                        @if (item.Patient != null && item.Patient.User != null)
+                                        {
+                                            @(item.Patient.User.FirstName + " " + item.Patient.User.LastName)
+                                        }
+                                        else
+                                        {
+                                            <span class="text-danger">Unknown Patient</span>
+                                        }
+                                    </span>
+                                </div>
+
+                                <div>
+                                    @if (item.status == "Cancelled")
+                                    {
+                                        <span class="appointment_cancelled">Cancelled</span>
+                                    }
+                                    else if (item.startTime < DateTime.Now)
+                                    {
+                                        <span class="appointment_completed">Completed</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="appointment_upcoming">Upcoming</span>
+                                    }
+                                </div>
+                            </div>
+
+                            <hr style="margin: 10px 0; border-color: #f0f0f0;" />
+
+                            <div style="display:flex; justify-content:space-between; font-size: 14px; color: #666;">
+                                <span>Reason: <strong>@item.ReasonForVisit</strong></span>
+
+                                <a href="@Url.Action("PatientHistory", "Doctor", new { id = item.patientId })" class="patient_history_link">
+                                    View Patient History
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+        <div class="doctor_info_card">
+            <h4>Calendar Stats</h4>
+            <hr />
+            <div class="calender_stats_numbers">
+                <p><strong>Total History:</strong> @Model.Count()</p>
+
+                <p style="color: rgb(49, 194, 15);">
+                    <strong>Upcoming:</strong>
+                    @Model.Count(x => x.startTime > DateTime.Now && x.status != "Cancelled")
+                </p>
+
+                <p style="color: #999">
+                    <strong>Completed:</strong>
+                    @Model.Count(x => x.startTime < DateTime.Now && x.status != "Cancelled")
+                </p>
+
+                <p style="color: rgb(255, 0, 0)">
+                    <strong>Cancelled:</strong>
+                    @Model.Count(x => x.status == "Cancelled")
+                </p>
+            </div>
+        </div>
+
+    </div>
+</main>

@@ -1,0 +1,100 @@
+﻿.history_timeline {
+    position: relative;
+    padding-left: 30px;
+    border-left: 3px solid #e3f2fd;
+    margin-left: 10px;
+}
+
+.main_content h3 {
+    font-family: 'Lato';
+    letter-spacing: 1px;
+    font-size: 20px;
+    color: #333;
+}
+
+.medical_records_for {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    color: #888 !important;
+}
+
+.history_card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-left: 5px solid #007bff;
+    position: relative;
+}
+
+
+.no_record {
+    text-align: center;
+    padding: 50px;
+    color: #999;
+}
+.record_date {
+    font-size: 12px;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.record_diagnosis {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.record_label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #007bff;
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+
+.record_text {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+    background: #f8fbff;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.write_new_record{
+    display: block;
+    text-align: center;
+    background: #e3f2fd;
+    color: #007bff;
+    padding: 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.doctor_name {
+    float: right;
+    text-transform: none;
+    color: #aaa;
+}
+
+.add_first_record {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.add-first-record:hover {
+    background-color: #0056b3;
+    color: white;
+    text-decoration: none;
+}

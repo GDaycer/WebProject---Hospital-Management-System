@@ -1,0 +1,76 @@
+﻿@model WebProject.Models.MedicalRecord
+
+@{
+    ViewBag.Title = "Create Medical Record";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/Content/DoctorHomePage.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/DoctorCreateRecord.css")" />
+}
+
+<main class="doctor_main">
+    <div class="dashboard_container">
+
+        <nav class="sidebar_nav_left">
+            <h3>Doctor Menu</h3>
+            <ul>
+                <li><a href="@Url.Action("HomeScreen", "Doctor")">Dashboard</a></li>
+                <li><a href="@Url.Action("Schedule", "Doctor")">Full Schedule</a></li>
+                <li><a href="@Url.Action("MyPatients", "Doctor")">My Patient List</a></li>
+                <li><a href="@Url.Action("CreateRecord", "Doctor")" style="background-color: #007bff; color: white;">Create Record</a></li>
+                <li><a href="@Url.Action("DoctorProfile", "Doctor")">Profile</a></li>
+            </ul>
+        </nav>
+
+        <div class="main_content">
+            <h3>Write New Medical Record</h3>
+
+
+            <div class="record_form_card">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form_group">
+                        <label class="form_label">Select Patient</label>
+                        @Html.DropDownList("PatientId", null, "-- Choose a Patient --", new { @class = "record_box" })
+                        @Html.ValidationMessageFor(model => model.PatientId, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form_group">
+                        <label class="form_label">Diagnosis Title</label>
+                        @Html.EditorFor(model => model.Diagnosis, new { htmlAttributes = new { @class = "record_box", placeholder = "e.g. Acute Bronchitis" } })
+                        @Html.ValidationMessageFor(model => model.Diagnosis, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form_group">
+                        <label class="form_label">Clinical Notes</label>
+                        @Html.TextAreaFor(model => model.Notes, new { @class = "record_box", rows = "5", placeholder = "Detailed observations..." })
+                        @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form_group">
+                        <label class="form_label">Prescriptions (Optional)</label>
+                        @Html.TextAreaFor(model => model.Prescriptions, new { @class = "record_box", rows = "3", placeholder = "e.g. Amoxicillin 500mg - 3x daily" })
+                        @Html.ValidationMessageFor(model => model.Prescriptions, "", new { @class = "text-danger" })
+                    </div>
+
+                    <button type="submit" class="btn_submit">Save Medical Record</button>
+                }
+            </div>
+        </div>
+
+        <div class="doctor_info_card">
+            <h4>Instructions</h4>
+            <p class="text-muted" style="font-size: 13px; text-align: left;">
+                <br>
+                1. Select the patient from the list. Only patients you have met will appear here.
+                <br><br>
+                2. This record will be automatically linked to your most recent appointment with them.
+            </p>
+        </div>
+
+    </div>
+</main>

@@ -1,0 +1,15 @@
+﻿.no_patient {
+    text-align: center;
+    padding: 50px;
+    color: #999;
+}
+
+.history_button {
+    font-size: 13px;
+    border: 1px solid #007bff;
+    color: #007bff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: 0.2s;
+}

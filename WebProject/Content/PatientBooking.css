@@ -1,0 +1,101 @@
+﻿.form_area {
+    margin-bottom: 20px;
+}
+
+
+.input_label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.two_col_row {
+    display: flex;
+    gap: 20px;
+}
+
+.form_box {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form_box:focus {
+    border-color: #CF352E;
+    outline: none;
+}
+
+.validation_message {
+    animation: blink 2s infinite linear;
+    background-color: #ffebe6;
+    color: #de350b;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+.validation_message ul{
+    list-style-type:none;
+}
+
+
+.tip_area {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+.tips {
+    flex-direction: column;
+    text-align: left;
+    gap: 15px;
+    font-size: 16px;
+    color: #555;
+    display: flex; 
+    justify-content: space-around; 
+    margin-top: 20px;
+}
+
+.book_btn {
+    background-color: #CF352E;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+
+.book_btn:hover {
+    background-color: #a01e1e;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fast-blink {
+
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}

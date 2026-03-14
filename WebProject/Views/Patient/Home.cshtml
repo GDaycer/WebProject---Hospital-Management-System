@@ -1,0 +1,120 @@
+﻿@model WebProject.Models.PatientHomeView
+
+@{
+    ViewBag.Title = "Patient Dashboard";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/Content/PatientHomePage.css")" />
+}
+
+
+<main class="patient_main">
+
+    <div class="dashboard_container">
+
+        <nav class="sidebar_nav_left">
+
+            <h3>Patient Menu</h3>
+
+            <ul>
+                <li><a href="@Url.Action("Home","Patient")" style="background-color: #CF352E; color: white;">Dashboard</a></li>
+                <li><a href="@Url.Action("Records", "Patient")">My Medical Records</a></li>
+                <li><a href="@Url.Action("Appointments", "Patient")">My Appointments</a></li>
+                <li><a href="@Url.Action("Profile", "Patient")">My Profile</a></li>
+                <li><a href="@Url.Action("Book", "Patient")">Book New Appointment</a></li>
+            </ul>
+
+        </nav>
+
+        <div class="main_content">
+            <h3>Your Upcoming Appointments</h3>
+            <hr />
+
+            @if (Model.UpcomingAppointments != null && Model.UpcomingAppointments.Count > 0)
+            {
+                foreach (var item in Model.UpcomingAppointments) { 
+
+                    if ((item.AppointmentDate - DateTime.Now).TotalHours < 12)  //less than 12 hours
+                    {
+                        <div class="lessthan12 appointment_card">
+                            <h4>@item.Specialty</h4> 
+
+                            <p><strong>Date:</strong> @item.AppointmentDate.ToString("dddd, MMMM dd")<b>&nbsp;&nbsp;&nbsp;⏰ Soon</b></p> 
+                            <p><strong>Time:</strong> @item.AppointmentDate.ToString("h:mm tt")</p>
+                            <p><strong>Doctor:</strong> @item.DoctorName</p>
+
+                        </div>
+                    } 
+                    else if ((item.AppointmentDate - DateTime.Now).TotalDays < 3)  //less than 3 days
+                    {
+                        <div class="lessthan3 appointment_card">
+                            <h4>@item.Specialty</h4>
+
+                            <p><strong>Date:</strong> @item.AppointmentDate.ToString("dddd, MMMM dd")</p>
+                            <p><strong>Time:</strong> @item.AppointmentDate.ToString("h:mm tt")</p>
+                            <p><strong>Doctor:</strong> @item.DoctorName</p>
+
+                        </div>
+                    }
+
+                    else
+                    {
+                        <div class="appointment_card">   
+                            <h4>@item.Specialty</h4> 
+
+                            <p><strong>Date:</strong> @item.AppointmentDate.ToString("dddd, MMMM dd")</p>
+                            <p><strong>Time:</strong> @item.AppointmentDate.ToString("h:mm tt")</p>
+                            <p><strong>Doctor:</strong> @item.DoctorName</p>
+
+                        </div>
+
+                    }
+                }
+            }
+            else
+            {
+                <div class="appointment_card" style="background-color: #eee; color: #666;">
+                    <h4>No Appointments</h4>
+                    <p>You have no upcoming appointments.</p>
+                    <a href="@Url.Action("Book", "Patient")" class="mini_nav_button">Book one now?</a>
+                </div>
+            }
+        </div>
+
+        <div class="patient_info_card">
+
+            <div class="patient_header">
+                <img src="@Url.Content("~/Content/images/profileIcon.png")" />
+
+                <h4>@Model.FullName</h4>
+            </div>
+
+            <div class="patient_stats">
+
+                <div class="stat_item">
+                    <span>Blood</span>
+                    <strong>@Model.BloodGroup</strong>
+                </div>
+
+                <div class="stat_item">
+                    <span>Height</span>
+                    <strong>@(Model.Height)cm</strong>
+                </div>
+
+                <div class="stat_item">
+                    <span>Weight</span>
+                    <strong>@(Model.Weight)kg</strong>
+                </div>
+
+            </div>
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;" />
+            <div id="patient_stats_extended">
+                @Html.Partial("_ProfileButton")
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<script src="~/Scripts/importantVisit.js"></script>

@@ -1,0 +1,86 @@
+﻿
+@model IEnumerable<WebProject.Models.MedicalRecord>
+
+@{
+    ViewBag.Title = "Medical History";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/Content/DoctorHomePage.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/PatientHistory.css")" />
+}
+<main class="doctor_main">
+    <div class="dashboard_container">
+
+        <nav class="sidebar_nav_left">
+            <h3>Doctor Menu</h3>
+            <ul>
+                <li><a href="@Url.Action("HomeScreen", "Doctor")">Dashboard</a></li>
+                <li><a href="@Url.Action("Schedule", "Doctor")">Full Schedule</a></li>
+                <li><a href="@Url.Action("MyPatients", "Doctor")" style="background-color: #007bff; color: white;">My Patient List</a></li>
+                <li><a href="@Url.Action("CreateRecord", "Doctor")">Create Record</a></li>
+                <li><a href="@Url.Action("DoctorProfile", "Doctor")">Profile</a></li>
+            </ul>
+        </nav>
+
+        <div class="main_content">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3> Patient History</h3>
+                    <p class="medical_records_for">Medical records for <strong>@ViewBag.PatientName</strong></p>
+                </div>
+                <a href="@Url.Action("MyPatients", "Doctor")" style="font-size: 14px; color: #666; text-decoration: none;">&larr; Back to List</a>  @*&larr; Left Arrow*@
+            </div>
+            <hr />
+
+            @if (Model == null || Model.Count() == 0)
+            {
+                <div class="no_record">
+
+                    <h4>No Medical Records Found</h4>
+                    <p>This patient has no recorded history yet.</p>
+                    <a href="@Url.Action("CreateRecord", "Doctor")" class="btn btn-primary add_first_record" >+ Add First Record</a>
+                </div>
+            }
+            else
+            {
+                <div class="history_timeline">
+                    @foreach (var record in Model)
+                    {
+                        <div class="history_card">
+
+                            <div class="record_date">
+                                @record.CreatedAt.ToString("MMMM dd, yyyy • HH:mm")
+
+                                <span class="doctor_name">
+                                    Dr. @(record.Doctor != null && record.Doctor.User != null ? record.Doctor.User.LastName : "Unknown")
+                                </span>
+                            </div>
+
+                            <div class="record_diagnosis">@record.Diagnosis</div>
+
+                            @if (!string.IsNullOrEmpty(record.Notes))
+                            {
+                                <div class="record_label">CLINICAL NOTES</div>
+                                <div class="record_text">@record.Notes</div>
+                            }
+
+
+                            @if (!string.IsNullOrEmpty(record.Prescriptions))
+                            {
+                                <div class="record_label">PRESCRIPTIONS</div>
+                                <div class="record_text" style="background-color: #fff8f8; color: #d63384;">@record.Prescriptions</div>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+        <div class="doctor_info_card">
+
+                <a href="@Url.Action("CreateRecord", "Doctor")" class="write_new_record">+ Write New Record</a>
+            </div>
+        </div>
+
+</main>

@@ -1,0 +1,63 @@
+.registerRow {
+    display: flex;
+    gap: 30px; 
+    justify-content: space-between;
+}
+
+.registerColumn {
+    flex: 1; 
+    min-width: 300px; 
+}
+
+.registerButtonArea {
+    margin-top: 20px;
+    text-align: center; 
+}
+
+.registerButton {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+}
+.registerButton:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+}
+.form-control-full {
+    width: 100%; 
+}
+
+.form_control {
+    padding: 8px 15px; 
+    font-size: 18px; 
+    height: auto; 
+    border-radius: 10px; 
+    border: 1px solid #ccc; 
+    width: 100%;
+}
+
+.register_form-container {
+    background-color: #ffffff;
+    padding: 50px; 
+    border-radius: 15px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
+    max-width: 1200px; 
+    margin: 50px auto; 
+    border-top: 5px solid #C0392B;
+    border: solid #CF352E;
+}
+
+.register_form-container label{
+    font-family: Lato;
+    font-weight:bold;
+}
+
+.input-validation-error {
+    border:2px solid #cc0000 !important;
+    background-color: #fff6f6;
+}

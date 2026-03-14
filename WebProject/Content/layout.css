@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#ikulogo {
+    width: 50pt;
+    height: 50pt;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.TheContainer {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+}
+.main {
+    padding: 8rem 0;
+    text-align: center;
+    color: #fff;
+}
+
+header {
+    background: #cf352e;
+    padding: 1rem 0;
+}
+
+header .TheContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-family: Amiri;
+    color: white;
+    margin-left: 1rem;
+}
+
+
+header h1 a {
+    color: #333;
+    text-decoration: none;
+}
+
+header > nav {
+    background: #b32e28;
+    padding: 0.5rem 0;
+    border-top: 1px solid #d44a43;
+}
+
+    header > nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header > nav li {
+    margin: 0 2rem;
+}
+
+header > nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    }
+
+    header > nav a:hover {
+    color: #bab8b8;
+}
+
+header .TheContainer nav {
+    position: absolute;
+    right: 0;
+}
+
+header .TheContainer nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+header .TheContainer nav li {
+    margin-left: 1.5rem;
+}
+
+header .TheContainer nav li:first-child {
+    margin-left: 5rem;
+}
+
+.blue_button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.blue_button:hover {
+    background: #0056b3;
+}
+
+main {
+    
+    flex-grow: 1;
+    background-color: #B24C42;
+    background-size: cover;
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+}

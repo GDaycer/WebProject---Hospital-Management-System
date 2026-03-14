@@ -1,0 +1,31 @@
+﻿<div style="margin-top: 15px;">
+
+    <button type="button"
+            onclick="closeImportantVisits('@Url.Action("GetDefaultProfileButton", "Patient")')"
+            class ="important_visit_btn">
+        Don't Display
+    </button>
+
+    <div style="display: flex; gap: 10px;">
+
+        <div style="flex: 1;">
+            <div class="visit_box">
+                <span class="visit_title">Diagnosis:</span>
+                <span>@ViewBag.Diagnosis</span>
+            </div>
+        </div>
+
+        <div style="flex: 1;">
+            <div class="visit_box">
+                <span class="visit_title">Prescription:</span>
+                <span>@ViewBag.Prescription</span>
+            </div>
+        </div>
+
+    </div>
+
+    <p style="text-align: center; margin-top: 15px; color: #555; font-size: 0.9rem;">
+        @ViewBag.FooterNote
+    </p>
+
+</div>

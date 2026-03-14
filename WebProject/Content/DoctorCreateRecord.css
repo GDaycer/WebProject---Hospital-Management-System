@@ -1,0 +1,58 @@
+﻿.record_form_card {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.05);
+    border-top: 4px solid #007bff;
+}
+
+.form_group {
+    margin-bottom: 20px;
+}
+
+.main_content h3 {
+    font-family: 'Lato';
+    letter-spacing: 1px;
+    font-size: 20px;
+    color: #333;
+}
+.form_label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.record_box {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dae0e5;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.record_box:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    outline: none;
+}
+
+.btn_submit {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+.btn_submit:hover {
+    background-color: #0056b3;
+}
+
+.text-danger{
+    color:red;
+}

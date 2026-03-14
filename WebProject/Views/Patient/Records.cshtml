@@ -1,0 +1,100 @@
+﻿@model IEnumerable<WebProject.Models.MedicalRecord>
+
+@{
+    ViewBag.Title = "My Medical Records";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/Content/PatientHomePage.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/PatientRecords.css")" />
+
+}
+
+<main class="patient_main">
+    <div class="dashboard_container">
+
+        <nav class="sidebar_nav_left">
+            <h3>Patient Menu</h3>
+            <ul>
+                <li><a href="@Url.Action("Home","Patient")">Dashboard</a></li>
+                <li><a href="@Url.Action("Records", "Patient")" style="background-color: #CF352E; color: white;">My Medical Records</a></li>
+                <li><a href="@Url.Action("Appointments", "Patient")">My Appointments</a></li>
+                <li><a href="@Url.Action("Profile", "Patient")">My Profile</a></li>
+                <li><a href="@Url.Action("Book", "Patient")">Book New Appointment</a></li>
+            </ul>
+        </nav>
+
+        <div class="main_content">
+            <h3>My Medical History</h3>
+            <hr />
+             
+            @if (Model == null || Model.Count() == 0)
+            {
+                <div class="no_record_area">
+                    <h4>No Records Found</h4>
+                    <p>Doctors haven't added any medical reports to your file yet.</p>
+                </div>
+            }
+            else
+            {
+                <div class="history_timeline">
+                    @foreach (var record in Model)
+                    {
+                        <div class="history_card">
+                            <div class="record_date">
+                                @record.CreatedAt.ToString("MMMM dd, yyyy")
+                                <span style="float: right; text-transform: none; color: #aaa;">
+                                    @if (record.Doctor != null && record.Doctor.User != null)
+                                    {
+                                        <span>Dr. @record.Doctor.User.LastName</span>
+                                    }
+                                    else
+                                    {
+                                        <span>Unknown Dr.</span>
+                                    }
+                                </span>
+                            </div>
+
+                            <div class="record_diagnosis">
+                                @record.Diagnosis
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(record.Notes))
+                            {
+                                <div class="record_label">Clinical Notes</div>
+                                <div class="record_text">@record.Notes</div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(record.Prescriptions))
+                            {
+                                <div class="record_label">Prescriptions</div>
+                                <div class="record_text" style="background-color: #fff !important; border-left: 3px solid #d63384 !important; color: #d63384;">
+                                    💊 @record.Prescriptions
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+        <div class="patient_info_card">
+            <div class="patient_header">
+                <img src="@Url.Content("~/Content/images/profileIcon.png")" alt="Profile" />
+                <h4>@ViewBag.FullName</h4>
+            </div>
+            <div class="patient_stats">
+                <div class="stat_item">
+                    <span>Blood</span><strong>@ViewBag.BloodGroup</strong>
+                </div>
+                <div class="stat_item">
+                    <span>Height</span><strong>@(ViewBag.Height)cm</strong>
+                </div>
+                <div class="stat_item">
+                    <span>Weight</span><strong>@(ViewBag.Weight)kg</strong>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>

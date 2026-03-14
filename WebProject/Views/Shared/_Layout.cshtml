@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/layout.css")" />
+    @RenderSection("Styles", required: false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="TheContainer">
+            
+            <img id="ikulogo" src="@Url.Content("~/Content/images/ikulogo.png")" alt="Logo" />
+
+            
+            <h1>Istanbul Kultur Hospital</h1>
+
+            
+            <nav>
+                <ul>
+                    <li>
+                        @if (Session["UserId"] == null)
+                        {
+                            <a href="@Url.Action("Register", "Patient")" class="blue_button">Patient Sign-up</a>
+                        }
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        
+        <nav>
+            <ul>
+                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li><a href="@Url.Action("Index", "Doctor")">Find a Doctor</a></li>
+                @if (Session["UserId"] != null)
+                {
+                    
+                    var userRole = Session["UserRole"] != null ? Session["UserRole"].ToString() : "";
+
+                    if (userRole == "Patient")
+                    {
+                        <li><a href="@Url.Action("Home", "Patient")">Patient Screen</a></li>
+                    }
+                    else if (userRole == "Doctor")
+                    {
+                        <li><a href="@Url.Action("HomeScreen", "Doctor")">Doctor Dashboard</a></li>
+                    }
+                    else if (userRole == "Admin")
+                    {
+                        <li><a href="@Url.Action("List", "Doctor")">Admin Panel</a></li>
+                    }
+
+                    <li><a href="@Url.Action("Logout", "Account")">Logout</a></li>
+                    }
+                    else
+                    {
+                    <li><a href="@Url.Action("Login", "Account")">Login</a></li>
+                    }
+
+                <li><a href="@Url.Action("ContactUs", "Home")">Contact Us</a></li>
+                <li><a href="@Url.Action("AboutUs", "Home")">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer>
+        <div>
+            <p>&copy; 2025 Hospital Management System. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

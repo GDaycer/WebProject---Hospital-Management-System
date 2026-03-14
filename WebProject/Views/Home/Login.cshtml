@@ -1,0 +1,67 @@
+﻿@model WebProject.Models.LoginView
+@{
+    ViewBag.Title = "Login";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/Content/login.css")" />
+}
+
+
+<section class="form-container">
+    <div class="TheContainer">
+        <div class="form_box">
+
+            <h2>Login to Your Account</h2>
+
+            <p class="subtitle"><i>Enter your credentials and role to sign in.</i></p>
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form_group role-selector-group">
+                    <label>Sign In As:</label>
+
+                    <div class="role_options">
+                        <input type="radio" id="rolePatient" name="Role" value="Patient" required checked>
+                        <label for="rolePatient" class="role_label">Patient</label>
+
+                        <input type="radio" id="roleDoctor" name="Role" value="Doctor" required>
+                        <label for="roleDoctor" class="role_label">Doctor</label>
+                    </div>
+
+                </div>
+
+                <div class="form_group">
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form_control", @type = "email" })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+
+                <div class="form_group">
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new { @class = "form_control" })
+                    @Html.ValidationMessageFor(m => m.Password)
+
+                    @if (ViewBag.ErrorMessage != null)
+                    {
+                        <div class="login_error_message">
+                            @ViewBag.ErrorMessage
+                        </div>
+                    }
+                </div>
+
+                <div class="form_group">
+                    <button type="submit" class="login_button">Sign In</button>
+                </div>
+            }
+            <div class="form_footer">
+                <p>
+                    Not yet a patient?
+                    <a href="@Url.Action("Register", "Patient")">Register now</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+

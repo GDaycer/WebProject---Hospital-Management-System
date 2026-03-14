@@ -1,0 +1,133 @@
+﻿.form-container {
+    padding: 3rem 0;
+}
+
+.form_box {
+    max-width: 450px;
+    margin: 0 auto;
+    background: #fff; 
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.form_box h2 {
+    text-align: center;
+    color: #CF352E;
+    margin-bottom: 0.5rem;
+}
+
+.form_box .subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 1.8rem;
+}
+
+.form_group {
+    margin-bottom: 1.25rem;
+}
+
+.form_group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: bold;
+    color: #444;
+}
+
+.form_control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.form_control:focus {
+    border-color: #CF352E;
+    outline: none;
+    box-shadow: 0 0 5px rgba(207, 53, 46, 0.3);
+}
+
+.role_selector-group {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.role_selector-group label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.8rem;
+}
+
+.role_options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.role_label {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: normal;
+    color: #555;
+    background-color: #f8f8f8;
+}
+
+
+input[type="radio"]:checked + .role_label {
+    background-color: #CF352E; 
+    color: #fff;
+    border-color: #CF352E;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.role_options input[type="radio"] {
+    display: none;
+}
+
+.form_footer {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.form_footer p {
+    color: #666;
+}
+
+.form_footer a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.form_footer a:hover {
+    text-decoration: underline;
+}
+
+.login_button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+}
+.login_button:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+}
+
+.login_error_message {
+    color: red;
+}

@@ -1,0 +1,142 @@
+﻿.doctor_main {
+    background-color: #f0f2f5;
+    min-height: 90vh;
+    padding-top: 20px;
+}
+
+.dashboard_container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px; 
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.patient_history_link {
+    color: #007bff;
+    text-decoration: none;
+}
+.text-muted {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    color: #888 !important;
+}
+.main_content h3 {
+    font-family: 'Lato';
+    letter-spacing: 1px;
+    font-size: 20px;
+    color: #333;
+}
+
+.sidebar_nav_left {
+    flex: 1;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
+    height: fit-content;
+    border-top: 4px solid #007bff; 
+}
+
+.sidebar_nav_left ul {
+    list-style: none;
+    padding: 0;
+}
+.sidebar_nav_left li {
+    margin-bottom: 15px;
+}
+
+.sidebar_nav_left a {
+    display: block;
+    padding: 15px;
+
+    background-color: #f4f8fb;
+    color: #4a5568; 
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 6px;
+    border: 1px solid #e1e8ed;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.sidebar_nav_left a:hover {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+}
+
+
+.main_content {
+    flex: 2; 
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.08);
+}
+
+.appointment_card {
+    
+    border-left: 5px solid #007bff;
+   
+    background-color: #f8fbff;
+    padding: 20px; 
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border-right: 1px solid #eef2f7;
+    border-top: 1px solid #eef2f7;
+    border-bottom: 1px solid #eef2f7;
+    transition: box-shadow 0.2s;
+}
+
+.appointment_card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+    
+.appointment_card h4 {
+    margin-top: 0;
+    color: #2c3e50; 
+}
+
+
+.doctor_info_card {
+    flex: 1;
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.08);
+    height: fit-content;
+    text-align: center;
+    border-top: 4px solid #17a2b8; 
+}
+
+.doctor_header img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid #e3f2fd; 
+    padding: 3px;
+}
+
+.doctor_header h4 {
+    margin: 5px 0;
+    color: #2c3e50; 
+    font-weight: 700;
+}
+
+.doctor_header span {
+    color: #007bff; 
+    font-size: 0.85em;
+    font-weight: 600;
+    background-color: #e3f2fd; 
+    padding: 5px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 5px;
+}

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<WebProject.Models.Doctor>
+
+@if (!Model.Any())
+{
+    <div class="no_results">
+        <p>No doctors found matching your criteria.</p>
+    </div>
+}
+else
+{
+    <div class="doctor_grid">
+        @foreach (var item in Model)
+        {
+            <div class="doctor_card">
+                <div class="doctor_info">
+                    <h4>Dr. @item.User.FirstName @item.User.LastName</h4>
+                    <span class="specialty">@item.Specialty</span>
+                    <p>Shift: @item.ShiftStart - @item.ShiftEnd</p>
+                </div>
+                <div class="card_actions">
+                    <a href="@Url.Action("Book", "Patient", new { id = item.DoctorId })" class="book_btn">Book Now</a>
+                </div>
+            </div>
+        }
+    </div>
+}

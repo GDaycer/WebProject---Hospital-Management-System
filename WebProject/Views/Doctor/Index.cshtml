@@ -1,0 +1,67 @@
+﻿@model WebProject.Models.DoctorSearch
+
+@{
+    ViewBag.Title = "Find a Doctor";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/Content/findDoctor.css")" />
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
+
+<div class="TheContainer" style="padding-top: 3rem;">
+
+    <div class="search_container">
+        <h2 class="search_title">Find a Provider</h2>
+
+        @using (Ajax.BeginForm("Search", "Doctor",
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                UpdateTargetId = "results_section", 
+                InsertionMode = InsertionMode.Replace,
+            },
+            new { id = "doctorSearchForm" }))
+        {
+            <div class="search_grid">
+                <div class="search_field">
+                    <label>First Name:</label>
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form_control search-input", placeholder = "First Name" })
+                </div>
+
+                <div class="search_field">
+                    <label>Last Name:</label>
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form_control search-input", placeholder = "Last Name" })
+                </div>
+
+                <div class="search_field">
+                    <label>Specialty:</label>
+                    @Html.DropDownListFor(m => m.SelectedSpecialty, Model.SpecialtyList, "All Specialties", new { @class = "form_control search-input" })
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="results_area" id="results_section">
+        @Html.Partial("_DoctorList", Model.Results)
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var timer;
+
+
+        $(".search-input").on('input change keyup', function () { //target the input boxes with "search-input" class
+            clearTimeout(timer);
+
+
+            timer = setTimeout(function () { //wait 100ms, then submit
+                $('#doctorSearchForm').submit();
+            }, 100);
+        });
+    });
+</script>

@@ -1,0 +1,81 @@
+﻿@model WebProject.Models.Doctor
+
+@{
+    ViewBag.Title = "My Profile";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/Content/DoctorHomePage.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/DoctorProfile.css")" />
+}
+
+<main class="doctor_main">
+    <div class="dashboard_container">
+
+        <nav class="sidebar_nav_left">
+            <h3>Doctor Menu</h3>
+            <ul>
+                <li><a href="@Url.Action("HomeScreen", "Doctor")">Dashboard</a></li>
+                <li><a href="@Url.Action("Schedule", "Doctor")">Full Schedule</a></li>
+                <li><a href="@Url.Action("MyPatients", "Doctor")">My Patient List</a></li>
+                <li><a href="@Url.Action("CreateRecord", "Doctor")">Create Record</a></li>
+                <li><a href="@Url.Action("DoctorProfile", "Doctor")" style="background-color: #007bff; color: white;">Profile</a></li>
+            </ul>
+        </nav>
+
+        <div class="main_content">
+
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success" style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 6px; margin-bottom: 20px;">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+            <div class="profile_header_section">
+                <div>
+                    <h2 style="margin: 0;">Dr. @Model.User.FirstName @Model.User.LastName</h2>
+                    <span class="specialty">@Model.Specialty</span>
+                </div>
+            </div>
+
+            <div class="row" style="display: flex; gap: 30px; margin-top: 20px;">
+                <div style="flex: 1;">
+                    <div class="profile_label">License Number 🔒</div>
+                    <div class="profile_value">@Model.LicenseNumber</div>
+
+                    <div class="profile_label">Email Address 🔒</div>
+                    <div class="profile_value">@Model.User.Email</div>
+
+                    <div class="profile_label">Shift Hours 🔒</div>
+                    <div class="profile_value"> @(Model.ShiftStart.HasValue ? Model.ShiftStart.Value.ToString(@"hh\:mm") : "--") to
+                                                @(Model.ShiftEnd.HasValue ? Model.ShiftEnd.Value.ToString(@"hh\:mm") : "--")
+                    </div>
+                </div>
+            </div>
+
+            <hr style="margin: 20px 0;" />
+
+            <h4 style="color: rgb(38, 119, 207)">Update Biography ✏️</h4>
+
+            @using (Html.BeginForm("UpdateBio", "Doctor", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.DoctorId)
+
+                <textarea name="Bio" class="form-control" rows="5" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px;" placeholder="Write about your experience...">@Model.Bio</textarea>
+
+                <div style="text-align: right; margin-top: 10px;">
+                    <button type="submit" class="btn btn-primary" style="background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Save Changes</button>
+                </div>
+            }
+
+        </div>
+
+        <div class="doctor_info_card">
+            <h4>Status: Active</h4>
+            <p class="text-muted">Your profile is visible to patients in the directory.</p>
+        </div>
+
+    </div>
+</main>

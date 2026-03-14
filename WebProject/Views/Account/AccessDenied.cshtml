@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Access Denied";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="@Url.Content("~/Content/AccessDenied.css")" />
+    
+ }
+
+
+
+<div class="access_denied_wrapper">
+
+    <div class="access_card">
+
+        <h1>Access Denied</h1>
+        <p>You do not have permission to view this page.</p>
+
+        <a href="@Url.Action("Login", "Account")" class="btn_login">Go to Login</a>
+    </div>
+
+</div>
